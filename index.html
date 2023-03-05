@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mashoun</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1>Home page</h1>
+    <a href="/blogs/blog1">Blog 1</a>
+    <a href="/blogs/blog2">Blog 2</a>
+    <hr>
+    <script>
+
+        let token = "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"
+        let content = `PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBsYW5nPSJlbiI+DQoNCjxoZWFkPg0KICAgIDxtZXRhIGNoYXJzZXQ9IlVURi04Ij4NCiAgICA8bWV0YSBodHRwLWVxdWl2PSJYLVVBLUNvbXBhdGlibGUiIGNvbnRlbnQ9IklFPWVkZ2UiPg0KICAgIDxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wIj4NCiAgICA8dGl0bGU+QmxvZyAxPC90aXRsZT4NCjwvaGVhZD4NCg0KPGJvZHk+DQogICAgPGFydGljbGU+DQogICAgICAgIDxoMT5CbG9nIDI8L2gxPg0KICAgICAgICA8cD5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCBjb25zZWN0ZXR1ciwgYWRpcGlzaWNpbmcgZWxpdC4gVm9sdXB0YXRlIGFyY2hpdGVjdG8gZXhlcmNpdGF0aW9uZW0gYW5pbWkgaXBzdW0NCiAgICAgICAgICAgIGFsaWFzLA0KICAgICAgICAgICAgY29ycnVwdGkgZG9sb3JlbSBwbGFjZWF0IGxhYm9yaW9zYW0gcXVpc3F1YW0gbm9uIGN1bSBxdWFzIG5hbSwgZWEsIGlwc2EgbGF1ZGFudGl1bSBvbW5pcyBxdWFzaSBjdWxwYSB2ZXJvLg0KICAgICAgICA8L3A+DQogICAgPC9hcnRpY2xlPg0KPC9ib2R5Pg0KDQo8L2h0bWw+`;
+        // console.log(file);
+        // var content = base64.encode(file);
+        console.log(content);
+        uploadFileApi(token, content)
+
+        function uploadFileApi(token, content) {
+
+            var data = JSON.stringify({
+                "message": "html file",
+                "content": `${content}`
+            });
+
+            var config = {
+                method: 'put',
+                // url: 'https://api.github.com/repos/mashoun/demo/contents/blogs/blog2/index.html',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+
+            axios(config)
+                .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    </script>
+</body>
+
+</html>
